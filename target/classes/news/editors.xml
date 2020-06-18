@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/news" prefix="news">
+  <global-cloud-connector versions="[3.5.0,8.0.0]" caption="News" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/news/abstractNewsConnectorGeneric"></global-cloud-connector>
+  <global-cloud-connector versions="[3.5.0,8.0.0]" caption="News: Configuration" description="Global Configuration configuration information." icon="icons/theme.classic/news-connector-small.png" localId="config" image="icons/theme.classic/news-connector-large.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/news/parentConfig" connectivityTesting="off" metaData="static" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="News configuration properties.">
+      <group id="newsGenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="general" caption="General">
+        <string name="apiKey" caption="Api Key" description="" supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+        <string name="apiUrl" caption="Api Url" description="" supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+        <string name="searchCriteria" caption="Search Criteria" description="" supportsExpressions="false" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractnewsconnectorgeneric" description="Interact with News." icon="icons/theme.classic/news-connector-small.png" localId="abstractNewsConnectorGeneric" image="icons/theme.classic/news-connector-large.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractNewsConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/news/config" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.5.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.news" caption="News" description="" icon="icons/theme.classic/news-connector-small.png" localId="news-connector" image="icons/theme.classic/news-connector-large.png" extends="http://www.mulesoft.org/schema/mule/news/abstractNewsConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="newsConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="News operations to execute" caption="Operation" description="Operation.">
+          <no-operation abstractElement="http://www.mulesoft.org/schema/mule/news/abstractNewsConnectorGeneric" versions="[3.5.0,8.0.0]" connector-name="processor"></no-operation>
+          <mode modeId="http://www.mulesoft.org/schema/mule/news/get-news" modeLabel="Get news"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.lang.String" caption="Get News" icon="icons/theme.classic/news-connector-small.png" localId="get-news" image="icons/theme.classic/news-connector-large.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/news/abstractNewsConnectorGeneric" metaData="static">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <string name="news" caption="News" description="" required="true" javaType="java.lang.String"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+</namespace>
